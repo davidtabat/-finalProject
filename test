@@ -1,0 +1,19 @@
+
+
+
+
+/user - POST {}
+/user - GET
+/user/id - PATCH/PUT
+/user/id - DELETE
+
+
+graphql
+
+
+grpc
+
+
+pooling -
+long pooling -
+WS socketio git clone https://github.com/socketio/chat-example.git
