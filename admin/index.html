@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  	<title>Admin Panel</title>
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  	<link rel="stylesheet" href="style.css">
+</head> 
+<body>
+  <div class="dashboard">
+    <div class="start"></div>
+  </div>
+  <script>
+    	$(document).ready(function(){
+    	    $.ajax({type: 'GET', url: "script.php",success: function(result){
+            	$users = JSON.parse(result);
+
+            	$users.forEach(
+					function myFunction(item) {
+						var html = `
+						<div class="user" id="${item.id}">
+							<div class="user-data">
+								<div class="fname">${item.name}</div>
+								<div class="lname">${item.surname}</div>
+								<div class="email">${item.email}</div>
+							</div>
+							<div class="remove" id="${item.id}">X</div>
+						</div>
+						`
+						$(".start").after(html);
+					});
+
+            	$('.remove').on('click', function(e){
+    	    		$.ajax({type: 'POST', url: "remove.php", data: {'id': e.target.id},success: function(result){
+    	    			$(`#${e.target.id}`).remove();
+		    	    }});
+    	  		});
+    	    }});
+    	});
+      </script>
+</body>
+</html>
